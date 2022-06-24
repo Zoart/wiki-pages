@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.header {
+    margin-top: 2%;
+}
+
+.header__title {
+    text-align: center;
+    font-size: 3em;
+}
+
+/* wiki-form */
+
+.wiki-form {
+    margin: 2% 5% 0;
+}
+
+.wiki-tabs {
+    font-size: 0;
+}
+
+.wiki-tabs__btn[type='radio'] {
+    display: none;
+}
+
+/* content */
+.wiki-tabs__content {
+    margin-top: 1em;
+    padding: 14px;
+    display: none;
+    font-size: 16px;
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+#tab-btn-1:checked~#content1,
+#tab-btn-2:checked~#content2 {
+    display: block;
+}
+
+.wiki-tabs__label {
+    margin-right: 5px;
+    padding: 2px 5px 0;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    letter-spacing: 1px;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.wiki-tabs__label:hover {
+    background-color: rgba(198, 198, 198, 0.187);
+}
+
+/* import content */
+
+.import__input {
+    margin-right: 1em;
+    border: 1px solid red;
+    font-size: 20px;
+    padding: 3px 7px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.import-btn {
+    font-size: 18px;
+    border: 2px solid black;
+    padding: 4px 8px;
+    border-radius: 15px;
+    background-color: rgba(145, 255, 82, 0.279);
+    cursor: pointer;
+}
+
+.import-load {
+    width: 70px;
+    height: 10px;
+    background-color: black;
+}
