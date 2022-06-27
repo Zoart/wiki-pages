@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GetArticleController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\WordSearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [GetArticleController::class, 'index']);
 
-Route::post('/findPage', [GetArticleController::class, 'findPage'])->name('findPage');
+Route::post('/wiki-pages', [GetArticleController::class, 'findPage'])->name('wiki-pages');
+
+Route::get('/result', [GetArticleController::class, 'get_wiki_page']);
+
+Route::post('/word_search_process', [WordSearchController::class, 'word_search_process'])->name('word_search');
+
+Route::get('/word_search', [WordSearchController::class, 'get_word_search_page']);

@@ -7,6 +7,10 @@
         <title>@yield('title')</title>
 
         <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- Styles -->
@@ -24,90 +28,40 @@
         <link href="{{asset('style/style.css')}}" rel="stylesheet">
 
     </head>
-    <body class="antialiased">
-        @yield('content')
-        <!-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-        </div> -->
-        <header class="header">
-            <h1 class="header__title">
-                Wiki keeper
-            </h1>
-        </header>
+    <body class="antialiased root">
         <main class="wiki-form">
+            @yield('wiki-tabs')
             <div class="wiki-tabs">
-                <input class="wiki-tabs__btn" type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
+                <input class="wiki-tabs__btn" type="radio" name="tab-btn" id="tab-btn-<?php
+                    if ($search == 1) {echo 2;} else {echo 1;}?>" value="" checked>
                 <label class="wiki-tabs__label" for="tab-btn-1">Импорт статей</label>
-                <input class="wiki-tabs__btn" type="radio" name="tab-btn" id="tab-btn-2">
+                <input class="wiki-tabs__btn" type="radio" name="tab-btn" id="tab-btn-<?php
+                    if ($search == 1) {echo 1;} else {echo 2;};?>">
                 <label class="wiki-tabs__label" for="tab-btn-2">Поиск по статьям</label>
 
                 <!-- Найти и копировать -->
                 <div class="wiki-tabs__content wiki-tabs__import" id="content1">
-                    <form method='post' action="{{ route( 'findPage' ) }}"
+                    <form method='post' action="{{ route( 'wiki-pages' ) }}"
                     accept-charset="UTF-8" class="import-from">
                         @csrf
                         <input class="import__input" name="articleName">
                         <button class="import-btn" type="submit">Найти и копировать</button>
-                        <div class="import-load"></div>
                     </form>
-                    <div class="serch-result">
-
-                    </div>
-                    <div class="db-content">
-                        <table class="table table-success table-striped table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope='col'>Название статьи</th>
-                                    <th scope='col'>Ссылка</th>
-                                    <th scope='col'>Размер статьи</th>
-                                    <th scope='col'>Кол-во слов</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <th scope="row">Text</th>
-                                <td>Text</td>
-                                <td>Text</td>
-                                <td>Text</td>
-                            </tbody>
-                        </table>
-                        @foreach ($plain_article_texts as $article)
-                            <p> Title: {{ $article->article_title }} </p>
-                        @endforeach
-                    </div>
+                    @yield('search-result')
+                @yield('content')
                 </div>
-
 
                 <!-- Найти -->
                 <div class="wiki-tabs__content" id="content2">
-                    <div class="import-from">
-
-                        <input class="import__input" >
+                    <form method='post' action="{{ route( 'word_search' ) }}"
+                    accept-charset="UTF-8" class="import-from">
+                        @csrf
+                        <input class="import__input" name="WordForSearch">
                         <button class="import-btn">Найти</button>
-                    </div>
-                    <div class="">
-                        <div class="find-result">
-
-                        </div>
-                        <div class="page-content">
-
-                        </div>
-                    </div>
-                </div>
-
+                    </form>
+                    @yield('atom_word_search_result')
             </div>
         </main>
+        <script src="{{ asset('js/display.js') }}"></script>
     </body>
 </html>
