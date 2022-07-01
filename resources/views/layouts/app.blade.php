@@ -25,7 +25,7 @@
                 font-family: 'Nunito', sans-serif;
             }
         </style>
-        <link href="{{asset('style/style.css')}}" rel="stylesheet">
+        <link href="/style/style.css" rel="stylesheet">
 
     </head>
     <body class="antialiased root">
@@ -62,6 +62,6 @@
                     @yield('atom_word_search_result')
             </div>
         </main>
-        <script src="{{ asset('js/display.js') }}"></script>
+        <script src="/js/display.js"></script>
     </body>
 </html>

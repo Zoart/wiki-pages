@@ -26,9 +26,7 @@ class WordSearchController extends Controller
     }
 
     public function word_search_process(Request $request) {
-
         $this->find_matches($request->WordForSearch);
-
         return redirect('/word_search');
     }
 
@@ -38,7 +36,7 @@ class WordSearchController extends Controller
         foreach ($db_information as $object) {
             $id_article = $object->wiki_page_id;
             $word_id = $word;
-            $word_matches = substr_count($object->article_atom_text, $word);
+            $word_matches = substr_count(strtolower(($object->article_atom_text)), strtolower($word));
             if ($word_matches > 0) {
                 $this->save_in_link_table($id_article, $word_id, $word_matches);
             }

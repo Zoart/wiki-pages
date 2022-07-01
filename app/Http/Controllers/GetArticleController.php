@@ -67,7 +67,6 @@ class GetArticleController extends Controller
 
         $url = $endPoint . "?" . http_build_query( $params );
         $url_for_search = 'https://ru.wikipedia.org/wiki/' . $page_title;
-        // проверить доступен ли файл по запрашиваемому адресу
         $get_content = file_get_contents($url);
 
         $decode = json_decode($get_content, true);
@@ -102,7 +101,7 @@ class GetArticleController extends Controller
             "АаБбВвГгДдЕеЁёЖжЗзИиЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЪъЫыЬьЭэЮюЯя0123456789"
         );
 
-        $atom_wiki_text_words = implode(' ', $atom_wiki_text);
+        $atom_wiki_text_words = strtolower((implode(' ', $atom_wiki_text)));
 
         $atom_wiki_text_words_convert = mb_convert_encoding($atom_wiki_text_words, 'UTF-8', 'UTF-8');
 

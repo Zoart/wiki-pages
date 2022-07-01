@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('wiki_atom_texts', function (Blueprint $table) {
             $table->longText('article_atom_text');
-            $table->increments('wiki_page_id')->nullable();
+            $table->increments('wiki_page_id');
             $table->foreign('wiki_page_id')
             ->references('id')
             ->on('wiki_pages')
